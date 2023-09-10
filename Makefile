@@ -1,5 +1,5 @@
  
-# firefly Makefile
+# protonpack-huzzah32 Makefile
 # 
 # https://docs.circuitpython.org/en/latest/docs/workflows.html#get
 #
@@ -21,9 +21,9 @@ CP_BUNDLE_URL=https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases
 # No config below this line
 all: install .gitignore
 
-install: .install-version.py .install-boot.py .install-code.py .install-firefly.py
+install: .install-version.py .install-boot.py .install-code.py
 
-version.py: code.py firefly.py
+version.py: code.py
 	date -r code.py "+__version__ = %'%Y-%m-%d %H:%M:%S%'" > version.py
 
 .install-%.py: %.py
