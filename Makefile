@@ -19,9 +19,12 @@ VERBOSE=-v
 CP_BUNDLE_URL=https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/download/20230910/adafruit-circuitpython-bundle-8.x-mpy-20230910.zip
 
 # No config below this line
-all: install .gitignore
+all: install .gitignore requirements.txt
 
 install: .install-version.py .install-boot.py .install-code.py
+
+requirements.txt:
+	. ./venv/bin/activate && pip freeze > requirements.txt
 
 version.py: code.py
 	date -r code.py "+__version__ = %'%Y-%m-%d %H:%M:%S%'" > version.py
@@ -31,15 +34,12 @@ version.py: code.py
 		--upload-file $< $(CPURL)/fs/$< \
 	  	&& touch $(@)
 
-install-lib: downloads downloads/bundle/lib/neopixel.mpy downloads/bundle/lib/adafruit_minimqtt/adafruit_minimqtt.mpy \
+install-lib: downloads downloads/bundle/lib/neopixel.mpy \
 		downloads/bundle/lib/adafruit_fancyled/adafruit_fancyled.mpy
 	cd downloads/bundle/lib && \
 	curl $(VERBOSE) -u :$(CIRCUITPY_WEB_API_PASSWORD) --create-dirs --location --location-trusted \
 		--upload-file adafruit_fancyled/adafruit_fancyled.mpy $(CPURL)/fs/lib/adafruit_fancyled/adafruit_fancyled.mpy \
 		--upload-file adafruit_fancyled/__init__.py $(CPURL)/fs/lib/adafruit_fancyled/__init__.py \
-		--upload-file adafruit_minimqtt/adafruit_minimqtt.mpy $(CPURL)/fs/lib/adafruit_minimqtt/adafruit_minimqtt.mpy \
-		--upload-file adafruit_minimqtt/matcher.mpy $(CPURL)/fs/lib/adafruit_minimqtt/matcher.mpy \
-		--upload-file adafruit_minimqtt/__init__.py $(CPURL)/fs/lib/adafruit_minimqtt/__init__.py \
 		--upload-file neopixel.mpy $(CPURL)/fs/lib/neopixel.mpy
 
 get-cp-info:
