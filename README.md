@@ -4,10 +4,12 @@ This is a CircuitPython script to drive Neopixels from a Huzzah32 in a Ghostbust
 ## References:
 
 * Adafruit Huzzah32
-https://www.adafruit.com/product/3405
+  * https://www.adafruit.com/product/3405
+  * https://learn.adafruit.com/adafruit-huzzah32-esp32-feather
+  * https://learn.adafruit.com/adafruit-huzzah32-esp32-feather/pinouts
 
 * CircuitPython Binary for the Adafruit Huzzah32
-https://circuitpython.org/board/adafruit_feather_huzzah32/
+  https://circuitpython.org/board/adafruit_feather_huzzah32/
 
 * CircuitPython Core Modules
 https://docs.circuitpython.org/en/latest/shared-bindings/index.html
