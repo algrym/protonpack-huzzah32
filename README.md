@@ -1,6 +1,12 @@
 # protonpack-huzzah32
 This is a CircuitPython script to drive Neopixels from a Huzzah32 in a Ghostbusters-style proton pack.
 
+# Huzzah32 Pin Connections
+* 3V  -> +3.3V bus
+* GND -> Ground Bus
+* A0  -> NeoPixel Stick
+* A1  -> NeoPixel Ring
+
 ## References:
 
 * Adafruit Huzzah32
