@@ -9,6 +9,7 @@ import adafruit_fancyled.adafruit_fancyled as fancyled
 import board
 import neopixel
 import supervisor
+import microcontroller
 
 import version
 
@@ -39,6 +40,9 @@ change_speed: int = 30  # How often should we change speed?
 # how many LEDs should the ring light at one time?
 ring_cursor_width: int = 3
 
+# Startup sound MP3 path
+startup_mp3_filename = 'lib/KJH_PackstartCombo.mp3'
+
 #
 ###################################################################
 # No config beyond this point
@@ -46,8 +50,12 @@ ring_cursor_width: int = 3
 #
 
 # Print startup info
-print(f"-=< protonpack v{protonpack_version} - https://github.com/algrym/protonpack-huzzah32/ >=-")
+print(f"-=< protonpack v{protonpack_version} - https://github.com/algrym/protonpack/ >=-")
 print(f" - uname: {os.uname()}")
+print(f" - cpu uid: {microcontroller.cpu.uid}")
+print(f" -- freq: {microcontroller.cpu.frequency / 1e6} MHz")
+print(f" -- reset reason: {microcontroller.cpu.reset_reason}")
+print(f" -- nvm: {len(microcontroller.nvm)} bytes")
 print(f" - python v{sys.version}")
 print(f" - Adafruit fancyled v{fancyled.__version__}")
 print(f" - neopixel v{neopixel.__version__}")
@@ -65,22 +73,21 @@ OFF = (0, 0, 0)
 ring_on_color = [RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, WHITE]
 
 # initialize neopixels
-print(f"   - NeoPixel stick size {neopixel_stick_num_pixels} on {neopixel_stick_pin}")
+print(f" -- stick size {neopixel_stick_num_pixels} on {neopixel_stick_pin}")
 stick_pixels = neopixel.NeoPixel(neopixel_stick_pin,
                                  neopixel_stick_num_pixels,
                                  brightness=neopixel_stick_brightness)
-print(f"   - NeoPixel ring  size {neopixel_ring_num_pixels} on {neopixel_ring_pin}")
+print(f" -- ring  size {neopixel_ring_num_pixels} on {neopixel_ring_pin}")
 ring_pixels = neopixel.NeoPixel(neopixel_ring_pin,
                                 neopixel_ring_num_pixels,
                                 brightness=neopixel_ring_brightness)
 
-
 def all_off():
-    # callback to turn everything off on exit
-    print(' - Exiting: all pixels off.')
+    # callback to turn everything off and restart
+    print('Exiting: all pixels off.')
     stick_pixels.fill(OFF)
     ring_pixels.fill(OFF)
-    sys.exit(0)
+    supervisor.reload()
 
 
 # turn everything off on exit
