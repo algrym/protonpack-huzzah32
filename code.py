@@ -7,9 +7,9 @@ import time
 
 import adafruit_fancyled.adafruit_fancyled as fancyled
 import board
+import microcontroller
 import neopixel
 import supervisor
-import microcontroller
 
 import version
 
@@ -39,9 +39,6 @@ change_speed: int = 30  # How often should we change speed?
 
 # how many LEDs should the ring light at one time?
 ring_cursor_width: int = 3
-
-# Startup sound MP3 path
-startup_mp3_filename = 'lib/KJH_PackstartCombo.mp3'
 
 #
 ###################################################################
