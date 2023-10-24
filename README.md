@@ -23,6 +23,9 @@ This is a CircuitPython script to drive Neopixels from a Huzzah32 in a Ghostbust
 * Integrating CircuitPython with PAM8302 audio amp
   https://learn.adafruit.com/circuitpython-sound-box/software
 
+* Adafruit Prop-Maker FeatherWing
+  https://www.adafruit.com/product/3988
+ 
 * Installing CircuitPython
   https://learn.adafruit.com/circuitpython-with-esp32-quick-start/installing-circuitpython
 
