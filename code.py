@@ -47,7 +47,7 @@ ring_cursor_width: int = 3
 #
 
 # Print startup info
-print(f"-=< protonpack v{protonpack_version} - https://github.com/algrym/protonpack/ >=-")
+print(f"-=< protonpack v{protonpack_version} - https://github.com/algrym/protonpack-huzzah32/ >=-")
 print(f" - uname: {os.uname()}")
 print(f" - cpu uid: {microcontroller.cpu.uid}")
 print(f" -- freq: {microcontroller.cpu.frequency / 1e6} MHz")
